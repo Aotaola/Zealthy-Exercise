@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+//e
 // PASSWORD HASHING
 const hashPassword = async (password) => {
   const saltRounds = 10;
