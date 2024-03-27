@@ -7,11 +7,9 @@ const Ticket = () => {
 
     const [ticket, setTicket] = useState([]);
 
-    const [visualStatus, setVisualStatus] = useState({});
-
     const fetchTicket = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/tickets', {
+            const response = await fetch('https://zealthy-ticket-c0646164bbc1.herokuapp.com/api/tickets', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +32,7 @@ const Ticket = () => {
     // delete ticket
     const deleteTicket = async (ticketId) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/tickets/${ticketId}`, {
+            const response = await fetch(`https://zealthy-ticket-c0646164bbc1.herokuapp.com/api/tickets/${ticketId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,12 +50,6 @@ const Ticket = () => {
         }
     };
 
-    const updateVisualStatus = (ticketId, status) => {
-        setVisualStatus((prevStatus) => ({
-            ...prevStatus,
-            [ticketId]: status,
-        }));
-    };
     
     useEffect(() => {
         fetchTicket();
@@ -65,7 +57,7 @@ const Ticket = () => {
 
     const statusInProgress = async (ticketId) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`https://zealthy-ticket-c0646164bbc1.herokuapp.com/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,10 +71,6 @@ const Ticket = () => {
             }
     
             console.log("Ticket status updated to 'in progress' successfully");
-            setVisualStatus((prevStatus) => ({
-                ...prevStatus,
-                [ticketId]: 'in-progress',
-            }));
         
         } catch (error) {
             console.error("Error updating ticket status:", error);
@@ -92,7 +80,7 @@ const Ticket = () => {
     // compleated
     const statusCompleted = async (ticketId) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`https://zealthy-ticket-c0646164bbc1.herokuapp.com/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,10 +93,6 @@ const Ticket = () => {
             }
     
             console.log("Ticket status updated to 'completed' successfully");
-            setVisualStatus((prevStatus) => ({
-                ...prevStatus,
-                [ticketId]: 'in-progress',
-            }));
         
         } catch (error) {
             console.error("Error updating ticket status:", error);
