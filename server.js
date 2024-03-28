@@ -1,14 +1,13 @@
 require('dotenv').config();
 
 const express = require('express');
-const cors = require('cors'); 
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const path = require('path'); // Add this line
 const app = express();
 
 const ticketRoutes = require('./routes/ticketRoutes');
-//const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
-
 
 app.use(cors()); // cors middleware
 app.use(express.json());
@@ -25,10 +24,15 @@ app.use('/api', ticketRoutes);
 // AUTH
 app.use('/api', authRoutes);
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
