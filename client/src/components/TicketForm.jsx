@@ -45,6 +45,7 @@ const TicketForm = () => {
         }
     };    
 
+    console.log(formData);
     return (
         <form onSubmit={handleSubmit} className="ticket-form">
             <div className="form-field">

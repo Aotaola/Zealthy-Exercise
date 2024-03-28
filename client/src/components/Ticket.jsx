@@ -111,6 +111,7 @@ const Ticket = () => {
         }).format(new Date(timestamp));
     };
     
+    
 
     return(
         <div className="ticket-container">
@@ -119,7 +120,7 @@ const Ticket = () => {
                 <h3>{ticket.name}</h3>
                 <p>Email: {ticket.email}</p>
                 <p>Issue: {ticket.message}</p>
-                <p>status: {ticket.status}</p>
+                <p>status: {ticket.status || "new"}</p>
                 <p>submited: {formatDate(ticket.created_at)}</p>
                 <p>last update: {formatDate(ticket.updated_at)}</p>
                 <div className='status-buttons'>
