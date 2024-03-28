@@ -36,8 +36,8 @@ const TicketForm = () => {
             setFormData({
                 name: "",
                 email: "",
-                message: "",
                 status: "new",
+                message: "",
             });
         } catch (error) {
             console.error("Form submission error:", error);
