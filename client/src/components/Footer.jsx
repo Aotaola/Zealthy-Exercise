@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className={`footer ${isAdmin ? 'admin-footer' : ''}`}>
             <div className={`footer-content ${isAdmin ? 'admin-footer-content' : ''}`}>
-                Zealthy Footer
+                Built by ALejandro Otaola
             </div>
         </footer>
     )
