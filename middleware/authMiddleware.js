@@ -1,9 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-
-
-
-
 // Middleware to verify a JWT token and authenticate an admin user
 const authenticateAdmin = (req, res, next) => {
   const token = req.headers.authorization;
