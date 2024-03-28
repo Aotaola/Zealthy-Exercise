@@ -16,7 +16,7 @@ const TicketForm = () => {
         e.preventDefault(); 
     
         try {
-            const response = await fetch('https://zealthy-ticket-c0646164bbc1.herokuapp.com/api/tickets', {
+            const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
