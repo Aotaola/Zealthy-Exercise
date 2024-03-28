@@ -15,12 +15,14 @@ const TicketForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
+            const requestData = { ...formData, status: "new" };
+
             const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(requestData),
             });
     
             if (!response.ok) {
@@ -36,7 +38,6 @@ const TicketForm = () => {
             setFormData({
                 name: "",
                 email: "",
-                status: "new",
                 message: "",
             });
         } catch (error) {
