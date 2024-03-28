@@ -118,7 +118,7 @@ const Ticket = () => {
             <div key={ticket.id} className={`ticket-card ${isAdmin ? 'ticket-card-admin' : ''}`}>
                 <h3>{ticket.name}</h3>
                 <p>Email: {ticket.email}</p>
-                <p>Message: {ticket.message}</p>
+                <p>Issue: {ticket.message}</p>
                 <p>status: {ticket.status}</p>
                 <p>submited: {formatDate(ticket.created_at)}</p>
                 <p>last update: {formatDate(ticket.updated_at)}</p>
