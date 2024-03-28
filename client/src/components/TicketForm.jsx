@@ -37,6 +37,7 @@ const TicketForm = () => {
                 name: "",
                 email: "",
                 message: "",
+                status: "new",
             });
         } catch (error) {
             console.error("Form submission error:", error);
