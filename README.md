@@ -32,12 +32,16 @@ Follow these instructions to get the project up and running on your local machin
 3. Install dependencies for the server:
    yarn install
 
-4. Navigate to the client directory:
+4. Start the Node.js server:
+   node server.js
+
+5. In a new terminal, navigate to the client directory:
    cd client
 
-5. Install dependencies for the client:
+6. Install dependencies for the client:
    yarn install
 
-6. Start the development server:
+7. Start the React development server:
    yarn start
+
 
