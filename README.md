@@ -24,4 +24,20 @@ Follow these instructions to get the project up and running on your local machin
 ### Installation
 
 1. Clone the repository using SSH:
+   git clone git@github.com:Aotaola/Zealthy-Exercise.git
+
+2. Navigate to the project directory:
+   cd Zealthy-Exercise
+
+3. Install dependencies for the server:
+   yarn install
+
+4. Navigate to the client directory:
+   cd client
+
+5. Install dependencies for the client:
+   yarn install
+
+6. Start the development server:
+   yarn start
 
