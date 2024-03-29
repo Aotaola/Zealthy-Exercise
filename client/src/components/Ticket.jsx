@@ -101,7 +101,7 @@ const Ticket = () => {
             setTicket(ticket.map(ticket => ticket.id === ticketId ? updatedTicket : ticket))
 
             console.log("Ticket status updated to 'completed' successfully");
-            console.log("Would normally send email here with body... your issue has been resolved!")
+            console.log("Would normally send email here with body... your issue has been resolved!");
         
         } catch (error) {
             console.error("Error updating ticket status:", error);
