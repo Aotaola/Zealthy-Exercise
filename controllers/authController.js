@@ -25,7 +25,7 @@ const loginAdmin = async (req, res) => {
       // Generate a token
       const token = jwt.sign({ id: admin.id }, 'your_secret_key', { expiresIn: '24h' });
 
-      return res.status(200).json({ message: 'Login successful', token });
+      return res.status(200).json({ message: 'Login successful'});
     } else {
       console.log("Invalid credentials");
       return res.status(401).json({ message: 'Invalid credentials' });
