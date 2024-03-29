@@ -7,8 +7,8 @@
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: auto;
-  background: repeating-linear-gradient(315deg, #fffff2 5%, #006837 38%, #a2e8c3 68%, #ae7140 98%, #b59710 10%);
-  animation: gradient 20s ease infinite;
+  background: repeating-linear-gradient(315deg, #fffff2 1%, #006837 38%, #a2e8c3 68%, #ae7140 100%);
+  animation: gradient 30s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
   height: 100%;
