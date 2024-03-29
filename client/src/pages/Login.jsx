@@ -26,7 +26,7 @@ const Login = () => {
 
             const data = await response.json();
             login(data.isAdmin);
-            console.log('Login successful:');
+            console.log('Login successful');
 
             setFormData({ username: '', password: '' });
         } catch (error) {
