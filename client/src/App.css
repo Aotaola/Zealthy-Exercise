@@ -7,7 +7,7 @@
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: auto;
-  background: repeating-linear-gradient(315deg, #fffff2 5%, #006837 38%, #a2e8c3 68%, #ae7140 98%, #b59710 100%);
+  background: repeating-linear-gradient(315deg, #fffff2 5%, #006837 38%, #a2e8c3 68%, #ae7140 98%, #b59710 10%);
   animation: gradient 20s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
@@ -292,15 +292,14 @@
   flex-direction: row;
   /* flex-wrap: wrap; Allow items to wrap to the next line */
   /* justify-content: space-around; Distribute items evenly */
-  align-items: stretch; /* Stretch items to fill the container */
-  height: 100vh; /* Set height to 100% of the viewport height */
+  align-items: stretch; 
+  height: 90vh; 
   padding: 1rem;
   background-color: #2E3440;
   border-radius: .2rem;
   color: #fff;
-  overflow-y: auto; /* Add a scrollbar if content overflows */
+  overflow-y: auto; 
 }
-
 
 .admin-profile-card h2 {
   margin-bottom: .2rem;
@@ -308,28 +307,37 @@
 .admin-space {
   display: flex;
   flex-direction: column;
+  align-content: center;
   position: sticky;
-  top: 0; /* Adjust this value as needed */
+  top: 0; 
   bottom: 1;
-  align-content: space-between;
+  font-style: helvetica;
+  align-items: space-evenly;
   padding: 2rem;
   border-radius: 1rem;
   border-width: 1px;
   border-style: solid;
   border-color: #a2e8c3;
-  width: 200px; /* Set a fixed width */
+  width: 200px; 
 }
+h2 {
+  font: 100;
+  font-family: century;
+  color: lightgrey;
 
+
+}
 .logout-button {
   padding: .5rem 1rem;
-  margin: 1rem;
+  margin: .1rem;
   border: solid;
-  border-color: #d9534f;
+  border-color: #5f4241;
   border-radius: .2rem;
   background-color: transparent;
   color: white;
   cursor: pointer;
   font-size: 1rem;
+  
 }
 .status-buttons {
   display: flex;
@@ -446,7 +454,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
-  justify-content: start;
+  justify-content: center;
 }
 
 .ticket-card {

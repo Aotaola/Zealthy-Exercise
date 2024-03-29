@@ -22,8 +22,9 @@ const Ticket = () => {
 
             const data = await response.json();
             console.log("Ticket fetched successfully:", data);
-
-            setTicket(data); // Update state with fetched ticket
+            
+            // Update state with fetched ticket
+            setTicket(data); 
         } catch (error) {
             console.error("Error fetching ticket:", error);
         }
@@ -42,6 +43,8 @@ const Ticket = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            // const updatedTicket = await response.json();
+            // setTicket(ticket.map(ticket => ticket.id === ticketId ? updatedTicket : ticket))
     
             console.log("Ticket deleted successfully");
     
@@ -55,6 +58,7 @@ const Ticket = () => {
         fetchTicket();
     }, []);
 
+        // ticket in progress
     const statusInProgress = async (ticketId) => {
         try {
             const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}/status`, {
@@ -62,13 +66,15 @@ const Ticket = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: 'in progress' }),
+                body: JSON.stringify({ status: 'in progress'}),
             });
     
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-
             }
+            console.log(ticket.updated_at)
+            const updatedTicket = await response.json();
+            setTicket(ticket.map(ticket => ticket.id === ticketId ? updatedTicket : ticket))
     
             console.log("Ticket status updated to 'in progress' successfully");
         
@@ -91,7 +97,9 @@ const Ticket = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-    
+            const updatedTicket = await response.json();
+            setTicket(ticket.map(ticket => ticket.id === ticketId ? updatedTicket : ticket))
+
             console.log("Ticket status updated to 'completed' successfully");
         
         } catch (error) {
@@ -122,7 +130,7 @@ const Ticket = () => {
                 <p>Issue: {ticket.message}</p>
                 <p>status: {ticket.status || "new"}</p>
                 <p>submited: {formatDate(ticket.created_at)}</p>
-                <p>last update: {formatDate(ticket.updated_at)}</p>
+                {/* <p>last update: {formatDate(ticket.updated_at)}</p> */}
                 <div className='status-buttons'>
                     <button onClick={() => statusInProgress(ticket.id)} className='in-progress'>In Progress</button>
                     <button onClick={() => statusCompleted(ticket.id)}className='completed'>Completed</button>

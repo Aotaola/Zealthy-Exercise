@@ -9,7 +9,7 @@ const AdminProfileCard = () => {
             {isAdmin && (
                 <>
                     <div className="admin-space">
-                        <h2> Welcome!</h2>
+                        <h2> Welcome to the management portal</h2>
                         <button onClick={logout} className="logout-button">Logout</button>
                     </div>
                     <AdminCard />
