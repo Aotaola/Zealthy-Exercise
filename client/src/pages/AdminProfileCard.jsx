@@ -1,6 +1,7 @@
 import React from "react";
 import AdminCard from "./AdminCard";
 import { useAuth } from '../authFile/AuthContext';
+import log_out from "../assets/log_out.png"
 
 const AdminProfileCard = () => {
     const { isAdmin, logout } = useAuth();
@@ -9,8 +10,9 @@ const AdminProfileCard = () => {
             {isAdmin && (
                 <>
                     <div className="admin-space">
-                        <h2> Welcome to the management portal</h2>
-                        <button onClick={logout} className="logout-button">Logout</button>
+                        <button onClick={logout} className="logout-button">
+                            <img src={log_out} alt="Log Out" className="logout-icon"/>
+                        </button>
                     </div>
                     <AdminCard />
                 </>

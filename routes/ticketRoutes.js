@@ -14,6 +14,20 @@ router.get('/tickets', async (req, res) => {
   }
 });
 
+router.get('/tickets/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { rows } = await pool.query('SELECT * FROM tickets WHERE id = $1', [id]);
+    if (rows.length === 0) {
+      return res.status(404).send('Ticket not found');
+    }
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // POST
 router.post('/tickets', async (req, res) => {
     const { name, email, message } = req.body;
