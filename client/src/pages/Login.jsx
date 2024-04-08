@@ -43,11 +43,11 @@ const Login = () => {
     };
 
     useEffect(() => {
-        console.log('Admin info', adminInfo)
+        
     }, [adminInfo]);
 
     if (isAdmin) {
-        console.log(adminInfo)
+        
         return  <AdminProfileCard/> 
     }
     
