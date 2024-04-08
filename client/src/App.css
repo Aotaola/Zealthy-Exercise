@@ -85,6 +85,7 @@
 
 .main-content {
   flex: 1;
+  height: 100%;
 }
 
 
@@ -298,7 +299,7 @@
   background-color: #2E3440;
   color: #fff;
   overflow-y: auto; 
-  height: 90vh;
+  height: 85vh;
 }
 
 .admin-profile-card h2 {
