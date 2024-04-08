@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import log_out from "../assets/log_out.png"
 
 const Ticket = () => {
-    const { isAdmin, logout } = useAuth();
+    const { isAdmin, adminInfo, logout } = useAuth();
 
     const [ticket, setTicket] = useState([]);
 
@@ -14,7 +14,6 @@ const Ticket = () => {
     const [message, setMessage] = useState("");
 
     const [selectedTickets, setSelectedTickets] = useState([]);
-
 
     const fetchTicket = async () => {
         try {
@@ -142,15 +141,15 @@ const Ticket = () => {
     };
 
     // reply to ticket and log message
-    const sendEmail = (ticket) => {
+    const sendEmail = (ticket, adminInfo) => {
 
         const emailContent = {
-            from: 'admin',
+            from: adminInfo.username,
             to: ticket.email,
             message: message
         };
         toast.info(`${emailContent.from} replied ${emailContent.to}`, {
-            autoClose: 2000,
+            autoClose: 2500,
         });
         console.log("sending reply:", emailContent);
     }
@@ -268,9 +267,7 @@ const Ticket = () => {
                                             value={message}
                                             onChange={(e) => setMessage(e.target.value)}
                                             placeholder={ticket.email}></textarea>
-                                        <button onClick={(e) => sendEmail(ticket)} className='send-reply'>Send</button>
-                                    {/* <button onClick={() => statusInProgress(ticket.id)} className='in-progress'>In Progress</button> */}
-                                    {/* <button onClick={() => statusCompleted(ticket.id)}className='completed'>Completed</button> */}
+                                        <button onClick={(e) => sendEmail(ticket, adminInfo)} className='send-reply'>Send</button>
                                     </td>
                                     </tr>
                                 )}

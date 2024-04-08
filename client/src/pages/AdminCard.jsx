@@ -4,7 +4,7 @@ import TicketDispenser from "../components/TicketDispenser"
 const AdminCard = () => {
     return (
         <div className="admin-card">
-            <TicketDispenser />
+            <TicketDispenser/>
         </div>
     )
 }

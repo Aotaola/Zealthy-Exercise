@@ -241,18 +241,17 @@
   justify-content: center;
   /* width: 80%; */
   align-items: center;
-  padding: 50px;
-  /* min-height: 100vh;  */
+  padding: auto;
+  height: auto; 
   background-color: transparent;
 } 
 
 /* LOGIN */
 .login-page {
   width: 50%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 2rem;
   background-color: #fffff2;
-  border-radius: 1px;
   border-style: solid;
   border-color: #7d6f5b;
   border-radius: 1rem;

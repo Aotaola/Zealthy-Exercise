@@ -48,7 +48,7 @@ const Login = () => {
 
     if (isAdmin) {
         console.log(adminInfo)
-        return  <AdminProfileCard adminInfo={adminInfo}/> 
+        return  <AdminProfileCard/> 
     }
     
 

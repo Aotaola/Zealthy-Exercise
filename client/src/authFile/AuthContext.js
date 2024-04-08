@@ -11,13 +11,18 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // Check if the user is already logged in when the app loads
         const loggedInAdmin = localStorage.getItem('isAdmin') === 'true';
+        const storedAdminInfo = localStorage.getItem('adminInfo');
         setIsAdmin(loggedInAdmin);
+        if (storedAdminInfo) {
+            setAdminInfo(JSON.parse(storedAdminInfo));
+        }
     }, []);
 
     const login = (adminData) => {
         setIsAdmin(true);
-        localStorage.setItem('isAdmin', 'true');
         setAdminInfo(adminData);
+        localStorage.setItem('isAdmin', 'true');
+        localStorage.setItem('adminInfo', JSON.stringify(adminData));
     };
 
     const logout = () => {
@@ -26,6 +31,7 @@ export const AuthProvider = ({ children }) => {
             setIsAdmin(false);
             setAdminInfo(null);
             localStorage.removeItem('isAdmin');
+            localStorage.removeItem('adminInfo')
         }
     };
 

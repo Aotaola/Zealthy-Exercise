@@ -1,10 +1,10 @@
 import React from "react";
 import Ticket from "./Ticket.jsx"
 
-const TicketDispenser = () => {
+const TicketDispenser = ({adminInfo}) => {
     return (
         <div className="ticket-dispenser">
-            <Ticket/>
+            <Ticket adminInfo={adminInfo}/>
         </div>
     )
 }
