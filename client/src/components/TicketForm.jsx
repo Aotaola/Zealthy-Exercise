@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TicketForm = () => {
     const [formData, setFormData] = useState({
@@ -32,7 +34,9 @@ const TicketForm = () => {
             const data = await response.json();
             console.log("Form submitted successfully:", data);
     
-            alert('Form submitted'); 
+            toast.success('your request has been submitted', {
+                autoClose: 2000,
+            }); 
     
             // reseting form
             setFormData({
@@ -48,39 +52,40 @@ const TicketForm = () => {
     console.log(formData);
     return (
         <form onSubmit={handleSubmit} className="ticket-form">
-            <div className="form-field">
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <label htmlFor="message">Message:</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <button type="submit" className="submit-button">Submit</button>
+            <ToastContainer/>
+                <div className="form-field">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        />
+                </div>
+                <div className="form-field">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        />
+                </div>
+                <div className="form-field">
+                    <label htmlFor="message">Message:</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        />
+                </div>
+                <button type="submit" className="submit-button">Submit</button>
         </form>
     );
     

@@ -2,8 +2,10 @@ import React from "react";
 import { useAuth } from '../authFile/AuthContext'; 
 import { Link } from "react-router-dom";
 
+
 const NavBar = () => {
     const { isAdmin } = useAuth();
+
 
     const links = [
         { name: "Home", link: "/" },

@@ -6,6 +6,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [isAdmin, setIsAdmin] = useState(false);
+    const [adminInfo, setAdminInfo] = useState(null);
 
     useEffect(() => {
         // Check if the user is already logged in when the app loads
@@ -13,18 +14,23 @@ export const AuthProvider = ({ children }) => {
         setIsAdmin(loggedInAdmin);
     }, []);
 
-    const login = () => {
+    const login = (adminData) => {
         setIsAdmin(true);
         localStorage.setItem('isAdmin', 'true');
+        setAdminInfo(adminData);
     };
 
     const logout = () => {
-        setIsAdmin(false);
-        localStorage.removeItem('isAdmin');
+        const logoutConfirmed = window.confirm('Are you sure you want to log out')
+        if (logoutConfirmed) {
+            setIsAdmin(false);
+            setAdminInfo(null);
+            localStorage.removeItem('isAdmin');
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ isAdmin, login, logout }}>
+        <AuthContext.Provider value={{ isAdmin, adminInfo, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

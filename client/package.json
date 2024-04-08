@@ -1,6 +1,6 @@
 {
-  "name": "zealthy-exercise",
-  "version": "0.1.0",
+  "name": "quit",
+  "version": "q!",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -12,6 +12,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "serve": "^14.2.1",
     "web-vitals": "^2.1.0"
   },
@@ -38,5 +39,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "license": "MIT"
 }

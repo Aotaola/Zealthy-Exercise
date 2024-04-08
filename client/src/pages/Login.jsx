@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../authFile/AuthContext'; // Adjust the path as needed
 import AdminProfileCard from './AdminProfileCard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Login = () => {
-    const { isAdmin, login } = useAuth();
+    const { isAdmin, adminInfo, login } = useAuth();
     const [formData, setFormData] = useState({ username: '', password: '' });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,7 +19,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/admin/login', {
+            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/admin/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -25,49 +30,58 @@ const Login = () => {
             }
 
             const data = await response.json();
-            login(data.isAdmin);
+            login(data.admin);
             console.log('Login successful');
 
             setFormData({ username: '', password: '' });
         } catch (error) {
             console.error('Login failed:', error);
+            toast.error("wrong username or password",{
+                autoClose: 2000,
+            });
         }
     };
 
+    useEffect(() => {
+        console.log('Admin info', adminInfo)
+    }, [adminInfo]);
+
     if (isAdmin) {
-        return  <AdminProfileCard /> 
+        console.log(adminInfo)
+        return  <AdminProfileCard adminInfo={adminInfo}/> 
     }
     
 
     return (
         <div className="login-page">
+            <ToastContainer/>
             <div className="login-form">
-                <h1>This is the login page</h1>
-                <form onSubmit={handleSubmit} className="login-form">
-                    <div className="form-field">
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="login-button">Login</button>
-                </form>
+                    <h1>login</h1>
+                    <form onSubmit={handleSubmit} className="login-form">
+                        <div className="form-field">
+                            <label htmlFor="username">Username:</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-field">
+                            <label htmlFor="password">Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="login-button">Login</button>
+                    </form>
             </div>
         </div>
     );
