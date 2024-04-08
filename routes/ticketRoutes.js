@@ -15,6 +15,7 @@ router.get('/tickets', async (req, res) => {
 });
 
 router.get('/tickets/:id', async (req, res) => {
+  console.log(`Fetching ticket with ID: ${req.params.id}`);
   try {
     const { id } = req.params;
     const { rows } = await pool.query('SELECT * FROM tickets WHERE id = $1', [id]);
@@ -27,6 +28,11 @@ router.get('/tickets/:id', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+router.get('/tickets/:id', async (req, res) => {
+  res.json({ message: 'Route is working' });
+});
+
 
 // POST
 router.post('/tickets', async (req, res) => {

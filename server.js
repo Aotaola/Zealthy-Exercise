@@ -3,13 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const path = require('path'); // Add this line
+const path = require('path'); 
 const app = express();
 
 const ticketRoutes = require('./routes/ticketRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-app.use(cors()); // cors middleware
+app.use(cors()); 
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -29,10 +29,15 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+
+
