@@ -554,6 +554,7 @@ tr {
 }
 
 td, th {
+  justify-content: space-evenly;
   padding: 1rem;
   width: auto;
   flex-grow: 1;

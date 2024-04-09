@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../authFile/AuthContext'; 
 import { ToastContainer, toast } from 'react-toastify';
+import {FaSort, FaSortUp, FaSortDown} from 'react-icons/fa';
 import log_out from "../assets/log_out.png"
 
 const Ticket = () => {
@@ -14,6 +15,8 @@ const Ticket = () => {
     const [message, setMessage] = useState("");
 
     const [selectedTickets, setSelectedTickets] = useState([]);
+
+    const [sortConfig, setSortConfig] = useState({key: null, direction: null});
 
     const fetchTicket = async () => {
         try {
@@ -217,12 +220,54 @@ const Ticket = () => {
         setSelectedTickets([]);
     };
 
+    // sorting arrows logic
+    const handleSort = (key) => {
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            setSortConfig({ key, direction: 'desc' });
+        } else {
+            setSortConfig({ key, direction: 'asc' });
+        }
+    }
+
+    // sorting tickets
+    const sortTickets = (tickets, sortConfig) => {
+        if (!sortConfig.key || !sortConfig.direction) {
+            return tickets;
+        }
+
+        const statusOrder = { 'new': 1, 'in progress': 2, 'completed': 3};
+
+        const sortedTickets = [...tickets];
+        sortedTickets.sort((a, b) => {
+            let aValue = a[sortConfig.key];
+            let bValue = b[sortConfig.key];
+
+            if (sortConfig.key === 'status') {
+                aValue = statusOrder[aValue] || 0;
+                bValue = statusOrder[bValue] || 0;
+            }
+
+            // if (a[sortConfig.key] < b[sortConfig.key]) {
+            if (aValue < bValue) {
+                return sortConfig.direction === 'asc' ? -1 : 1;
+            }
+            // if (a[sortConfig.key] > b[sortConfig.key]) {
+            if (aValue > bValue) {
+                return sortConfig.direction === 'asc' ? 1 : -1;
+            }
+            return 0;
+        })
+
+        return sortedTickets;
+    };
+
+
     return(
         <div className="ticket-container">
             <ToastContainer/>
             <div className="actions-table">
                 <div className="select-ticket-btns">
-                    <button onClick={handleDeleteSelectedTickets} className='selected-button'>Delete Selected tickets</button>
+                    <button onClick={handleDeleteSelectedTickets} className='selected-button'>Delete tickets</button>
                     <button onClick={handleStatusProgressSelectedTickets} className='selected-button'>In Progress</button>
                     <button onClick={handleStatusCompleteSelectedTickets} className='selected-button'>Complete</button>
                 </div>
@@ -233,13 +278,25 @@ const Ticket = () => {
                 <table className="ticket-table">
                     <thead className='ticket-table-head'>
                         <tr className='ticket-tr'> 
-                            <th>Status</th>
-                            <th>Name</th>
-                            <th>Submitted</th>
+                            <th onClick={() => handleSort('status')}>
+                                Status
+                                {sortConfig.key === 'status' && (sortConfig.direction === 'asc' ? <FaSortUp/> : <FaSortDown/>)}
+                                {sortConfig.key !== 'status' && <FaSort/>}
+                                </th>
+                            <th onClick={() => handleSort('name')}>
+                                Name
+                                {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <FaSortUp/> : <FaSortDown/>)}
+                                {sortConfig.key !== 'name' && <FaSort/>}
+                                </th>
+                            <th onClick={() => handleSort('created_at')}>
+                                Submitted
+                                {sortConfig.key === 'created_at' && (sortConfig.direction === 'asc' ? <FaSortUp/> : <FaSortDown/>)}
+                                {sortConfig.key !== 'created_at' && <FaSort/>}
+                                </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {ticket.map((ticket) => (
+                        {sortTickets(ticket, sortConfig).map((ticket) => (
                             <>
                             <tr key={ticket.id} className={`ticket-card ${isAdmin ? 'ticket-card-admin' : ''}`}>
                                 <input 
