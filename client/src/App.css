@@ -299,6 +299,7 @@
   color: #fff;
   overflow-y: auto; 
   height: 85vh;
+  transition:  1s ease-in-out;
 }
 
 .admin-profile-card h2 {
@@ -577,6 +578,18 @@ td, th {
   margin: .5rem;
   width: auto;
   height: auto;
+  transition: 1s ease-in-out;
+}
+.ticket-card-admin:hover {
+  flex-direction: row;
+  /* background-color: transparent; */
+  background-color: #2E3440;
+  border-radius: 10px;
+  border:  2px solid #31997e;
+  margin: .5rem;
+  width: auto;
+  height: auto;
+  transition: .1s ease;
 }
 
 .ticket-table {
@@ -637,7 +650,8 @@ td, th {
   width: auto;
   margin-top: 1rem; 
   border: 1px solid #e0e0e0; /* Add a border for definition */
-  
+  transition:  1s ease;
+
 }
 
 .reply-textarea {
@@ -677,6 +691,19 @@ td, th {
   border-style: solid;
   border-color: #006837;
   background-color: #2E3440;
+}
+.actions-table:hover {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  border-style: solid;
+  border-color: #008e4b;
+  background-color: #2E3440;
+  transition: .1s ;
 }
 
 .selected-button {
