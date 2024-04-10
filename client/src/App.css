@@ -130,6 +130,7 @@
   background-color: #115c42;
   padding: 0 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%; 
 }
 
 .navbar-logo h1 {
@@ -297,9 +298,9 @@
   padding-right:1rem;
   background-color: #2E3440;
   color: #fff;
-  overflow-y: auto; 
-  height: 85vh;
-  transition:  1s ease-in-out;
+  overflow-y: scroll; 
+  height: 87vh;
+  transition: ease-in-out;
 }
 
 .admin-profile-card h2 {
@@ -470,6 +471,7 @@ h2 {
   margin: 0 ;
   padding: 0;
   background-color: #2E3440;
+  height: auto ;
 }
 
 /* ticket dispenser */
@@ -500,7 +502,9 @@ h2 {
   padding-left: 2rem;
   padding-right:2rem;
   width: 90%;
+  height: 100%
 }
+
 
 .full-ticket-container {
   display: flex;

@@ -12,19 +12,21 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <div className="main-content">
             <NavBar />
+          <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/admin_login" element={<Login />} />
               <Route path="/admin" element={<AdminProfileCard />} />
               <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
-            <div class="wave"></div>
+            <>
+              <div class="wave"></div>
 
-            <div class="wave"></div>
+              <div class="wave"></div>
 
-            <div class="wave"></div>
+              <div class="wave"></div>
+            </>
           </div>
           <Footer />
         </div>
