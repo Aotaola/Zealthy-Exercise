@@ -3,6 +3,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const TicketForm = () => {
+    
+    const url = process.env.REACT_APP_URL;
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -19,7 +22,7 @@ const TicketForm = () => {
         try {
             const requestData = { ...formData, status: "new" };
 
-            const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets', {
+            const response = await fetch(`${url}/api/tickets`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
