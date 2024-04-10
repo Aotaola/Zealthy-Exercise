@@ -102,7 +102,7 @@ const Ticket = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: 'Completed' }),
+                body: JSON.stringify({ status: 'completed' }),
             });
     
             if (!response.ok) {
@@ -192,7 +192,7 @@ const Ticket = () => {
 
         const updateTicketsInProgress = ticket.map(ticket => {
             if (selectedTickets.includes(ticket.id)){
-            return { ...ticket, status: 'In progress' };
+            return { ...ticket, status: 'in progress' };
         }
         return ticket;
         });
@@ -237,7 +237,7 @@ const Ticket = () => {
             return tickets;
         }
 
-        const statusOrder = { 'new': 1, 'In progress': 2, 'Completed': 3};
+        const statusOrder = { 'new': 1, 'in progress': 2, 'completed': 3};
 
         const sortedTickets = [...tickets];
         sortedTickets.sort((a, b) => {
