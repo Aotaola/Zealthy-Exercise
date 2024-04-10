@@ -18,11 +18,10 @@ const Ticket = () => {
 
     const [sortConfig, setSortConfig] = useState({key: null, direction: null});
     
-    const url = process.env.REACT_APP_URL;
 
     const fetchTicket = async () => {
         try {
-            const response = await fetch(`${url}/api/tickets`, {
+            const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,7 +46,7 @@ const Ticket = () => {
     const deleteTicket = async (ticketId) => {
 
             try {
-                const response = await fetch(`${url}/api/tickets/${ticketId}`, {
+                const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -73,12 +72,12 @@ const Ticket = () => {
         // ticket in progress
     const statusInProgress = async (ticketId) => {
         try {
-            const response = await fetch(`${url}/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: 'In progress'}),
+                body: JSON.stringify({ status: 'in progress'}),
             });
     
             if (!response.ok) {
@@ -97,7 +96,7 @@ const Ticket = () => {
     // compleated
     const statusCompleted = async (ticketId) => {
         try {
-            const response = await fetch(`${url}/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -192,7 +191,7 @@ const Ticket = () => {
 
         const updateTicketsInProgress = ticket.map(ticket => {
             if (selectedTickets.includes(ticket.id)){
-            return { ...ticket, status: 'in progress' };
+            return { ...ticket, status: 'In progress' };
         }
         return ticket;
         });
@@ -210,7 +209,7 @@ const Ticket = () => {
         }
         const updateTicketsComplete = ticket.map(ticket => {
             if (selectedTickets.includes(ticket.id)){
-            return { ...ticket, status: 'Completed' };
+            return { ...ticket, status: 'Complete' };
         }
         return ticket;
     });
