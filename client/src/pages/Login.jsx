@@ -4,13 +4,10 @@ import AdminProfileCard from './AdminProfileCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const Login = () => {
     const { isAdmin, adminInfo, login } = useAuth();
     const [formData, setFormData] = useState({ username: '', password: '' });
-    const url = process.env.URL;
-
+    const url = process.env.REACT_APP_API_URL || window.REACT_APP_API_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +17,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/admin/login`, {
+            const response = await fetch(`${url}/api/admin/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

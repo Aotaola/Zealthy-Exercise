@@ -5,6 +5,9 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const path = require('path'); 
 const app = express();
+//to inject env variable to frontend client
+const fs = require('fs'); 
+
 
 const ticketRoutes = require('./routes/ticketRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -26,6 +29,18 @@ app.use('/api', authRoutes);
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Serve modified index.html with environment variables
+app.get('/index.html', (req, res) => {
+  // Read the index.html file from your React build
+  let indexHtml = fs.readFileSync(path.join(__dirname, 'client/build/index.html'), 'utf-8');
+
+  // Inject environment variables into the HTML
+  indexHtml = indexHtml.replace(/%REACT_APP_API_URL%/g, process.env.REACT_APP_API_URL);
+
+  // Send the modified HTML as the response
+  res.send(indexHtml);
+});
 
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {

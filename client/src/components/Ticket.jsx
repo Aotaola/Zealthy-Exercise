@@ -18,10 +18,12 @@ const Ticket = () => {
 
     const [sortConfig, setSortConfig] = useState({key: null, direction: null});
     
+    const url = process.env.REACT_APP_API_URL || window.REACT_APP_API_URL;
+
 
     const fetchTicket = async () => {
         try {
-            const response = await fetch('https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets', {
+            const response = await fetch(`${url}/api/tickets`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,7 +48,7 @@ const Ticket = () => {
     const deleteTicket = async (ticketId) => {
 
             try {
-                const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}`, {
+                const response = await fetch(`${url}/api/tickets/${ticketId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -72,7 +74,7 @@ const Ticket = () => {
         // ticket in progress
     const statusInProgress = async (ticketId) => {
         try {
-            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`${url}/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -96,7 +98,7 @@ const Ticket = () => {
     // compleated
     const statusCompleted = async (ticketId) => {
         try {
-            const response = await fetch(`https://zealthy-ticket-exercise-5b9751ab0e6c.herokuapp.com/api/tickets/${ticketId}/status`, {
+            const response = await fetch(`${url}/api/tickets/${ticketId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -209,7 +211,7 @@ const Ticket = () => {
         }
         const updateTicketsComplete = ticket.map(ticket => {
             if (selectedTickets.includes(ticket.id)){
-            return { ...ticket, status: 'Complete' };
+            return { ...ticket, status: 'completed' };
         }
         return ticket;
     });
